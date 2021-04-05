@@ -10,7 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Image;
+
 
 Route::get('/', function () {
+    
+    /*$images = Image::all();
+    foreach ($images as $image){
+        echo $image->user->name;
+        foreach ($image->comments as $comment){
+            echo $comment->content;
+        }
+    }
+    die();*/
+    
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/settings', 'UserController@settings')->name('settings');
+Route::post('/user/update', 'UserController@update')->name('user.update');
+Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
