@@ -51,10 +51,10 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="">Home</a>
+                            <a class="nav-link" href=" {{route('home')}} ">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Up picture</a>
+                            <a class="nav-link" href=" {{route('image.create')}} ">Up picture</a>
                         </li>
                         
                         <li>

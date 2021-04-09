@@ -41,12 +41,12 @@ class UserController extends Controller
         $user->email = $email;
         
         //upload image
-        $image_patth = $request->file('image_path');
-        if($image_patth){
+        $image_path = $request->file('image_path');
+        if($image_path){
             //rename with unique name
-           $image_path_name = time().$image_patth->getClientOriginalName();
+           $image_path_name = time().$image_path->getClientOriginalName();
            //save in storage/app/users
-           Storage::disk('users')->put($image_path_name, File::get($image_patth));
+           Storage::disk('users')->put($image_path_name, File::get($image_path));
            //set the image to object
            $user->image = $image_path_name;
         }

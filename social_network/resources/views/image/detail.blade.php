@@ -4,10 +4,9 @@
 <!--<link href="{{ asset('css/style.css') }}" rel="stylesheet">-->
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             @include('includes.show_message')
-            @foreach($images as $image)
-            <div class="card pub_image">
+            <div class="card pub_image pub_image_detail">
                 <div class="card-header">
                     @if($image->user->image)
                     <div class="container-avatar">
@@ -15,15 +14,12 @@
                     </div>
                     @endif
                     <div class="data-user">
-                        <a href="{{ route('image.detail', ['id'=>$image->id])}}">
-                            {{'@'.$image->user->nick}}
-                        </a>
-                                              
+                        {{'@'.$image->user->nick}}                       
                     </div>
 
                 </div>
                 <div class="card-body">
-                    <div class="image-container">
+                    <div class="image-container image-detail">
                        <img src="{{route('image.file',['filename'=>$image->image_path])}}" >
                     </div>
                     
@@ -32,22 +28,27 @@
                         <span class="date">{{\FormatTime::LongTimeFilter($image->created_at)}}</span>
                     </div>
                     
-                    
                     <div class="likes">
                         <img src="{{asset('img/hearts_black.png')}}" />
                     </div>
+                    <div class="clearfix"></div>
                     <div class="comments">
-                        <a href="" class="btn btn-sm btn-secondary btn-comments">
-                        Comments ({{count($image->comments)}})
-                        </a>
+                        <h3>Comments ({{count($image->comments)}})</h3>
+                        <hr>
+                        <form method="POST" action="">
+                            @csrf
+                            
+                            <input type="hidden" name="image_id" value="{{$image->id}}" />
+                            <p>
+                                <textarea class="form-control" name="content" required></textarea>
+                            </p>
+                            <button type="submit" class="btn btn-success">Send</button>
+                        </form>
+                        
                     </div>
                     
                 </div>
             </div>
-            @endforeach
-            <!--Pagination-->
-            <div class="clearfix"></div>
-            {{$images->links()}}
         </div>
     </div>
 </div>
