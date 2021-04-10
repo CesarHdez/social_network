@@ -33,17 +33,38 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="comments">
-                        <h3>Comments ({{count($image->comments)}})</h3>
+                        <h5>Comments ({{count($image->comments)}})</h5>
                         <hr>
-                        <form method="POST" action="">
+                        <form method="POST" action="{{route('comment.save')}}">
                             @csrf
                             
                             <input type="hidden" name="image_id" value="{{$image->id}}" />
                             <p>
-                                <textarea class="form-control" name="content" required></textarea>
+                                <textarea name="content" class="form-control {{$errors->has('content') ? 'is-invalid' : ''}}"></textarea>
+                                @if($errors->has('content'))
+                                <samp class="invalid-feedback" role="alert">
+                                    <strong> {{$errors->first('content')}} </strong>
+                                </samp>
+                                @endif   
                             </p>
                             <button type="submit" class="btn btn-success">Send</button>
                         </form>
+                        <hr>
+                        @foreach($image->comments as $comment)
+                        <div class="comments">
+                            <div class="comment-detail">
+                                {{'@'.$comment->user->nick.' | '}}
+                                <span class="date">{{\FormatTime::LongTimeFilter($comment->created_at)}}</span>
+                            </div>
+                            <p>{{$comment->content}}
+                                <br>
+                                @if(Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                                <a href="{{route('comment.delete',['id' => $comment->id])}}" class="btn btn-sm btn-danger">Delete</a>
+                                @endif
+                            </p>
+                            
+                        </div>
+                        @endforeach
                         
                     </div>
                     
