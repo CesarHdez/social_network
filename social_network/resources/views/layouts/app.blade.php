@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -54,6 +55,9 @@
                             <a class="nav-link" href=" {{route('home')}} ">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href=" {{route('likes')}} ">Favorites</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href=" {{route('image.create')}} ">Up picture</a>
                         </li>
                         
@@ -67,7 +71,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{ route('user.profile', ['id' => Auth::user()->id]) }}">
                                     My Profile
                                 </a>
                                 <a class="dropdown-item" href="{{ route('settings') }}">

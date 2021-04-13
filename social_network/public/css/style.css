@@ -96,3 +96,46 @@ form .avatar{
     color: #444;
     font-size: 13px;
 }
+
+.pub_image .num_likes{
+    color: #444;
+    font-size: 12px;
+}
+
+.pub_image_detail .num_likes{
+    color: #444;
+    font-size: 12px;
+}
+
+.profile-user{
+    height: 200px;
+    margin-bottom: 40px;
+}
+
+.profile-user .container-avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 900px;
+    overflow: hidden;
+    float: left;
+}
+
+.profile-user .container-avatar img{
+    height: 100%;
+}
+
+.profile-user .user-info{
+    padding: 30px;
+    float: left;
+}
+
+.container-img-edit{
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.container-img-edit img{
+    width: 100%;
+}
