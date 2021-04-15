@@ -31,18 +31,25 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/settings', 'UserController@settings')->name('settings');
+
+Route::get('/user/{search?}', 'UserController@index')->name('users');
 Route::post('/user/update', 'UserController@update')->name('user.update');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
+Route::get('/profile/{id}', 'UserController@profile')->name('user.profile');
+
 Route::get('/upload-image', 'ImageController@create')->name('image.create');
 Route::post('/image/save', 'ImageController@save')->name('image.save');
 Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 Route::get('/image/{id}', 'ImageController@detail')->name('image.detail');
-Route::post('/comment/save', 'CommentController@save')->name('comment.save');
-Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
-Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
-Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('like.delete');
-Route::get('/likes', 'LikeController@index')->name('likes');
-Route::get('/profile/{id}', 'UserController@profile')->name('user.profile');
 Route::get('/image/delete/{id}', 'ImageController@delete')->name('image.delete');
 Route::get('/image/edit/{id}', 'ImageController@edit')->name('image.edit');
 Route::post('/image/update', 'ImageController@update')->name('image.update');
+
+Route::post('/comment/save', 'CommentController@save')->name('comment.save');
+Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
+
+Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
+Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('like.delete');
+Route::get('/likes', 'LikeController@index')->name('likes');
+
+

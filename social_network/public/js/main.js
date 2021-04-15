@@ -52,4 +52,11 @@ window.addEventListener("load", function () {
         });
     }
     dislike();
+    
+    //search
+    $('#searcher').submit(function(e){
+       $(this).attr('action',url+'user/'+$('#searcher #search').val());
+       console.log(url+'users/'+$('#searcher #search').val());
+    });
+    
 });
